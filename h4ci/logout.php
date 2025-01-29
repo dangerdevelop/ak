@@ -4,7 +4,7 @@
         session_start();
     }
 
-    if (!isset($_SESSION['sec-username']) || $_SESSION['sec-username'] !== 'admin') {
+    if (!isset($_SESSION['sec-username']) || $_SESSION['sec-username'] !== $settings['username']) {
         echo json_encode(['error' => 'Unauthorized access']);
         exit();
     }
