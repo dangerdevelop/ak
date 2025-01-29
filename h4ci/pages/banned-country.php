@@ -3,7 +3,7 @@ include "header.php";
 
 $query = $mysqli->query("SELECT * FROM `psec_pages-layolt` WHERE page='Banned_Country'");
 $row   = $query->fetch_assoc();
-if(isset($row['id'])){s
+if(isset($row['id'])){
 ?>
         <br />
         <div class="row d-flex justify-content-center">
