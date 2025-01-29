@@ -37,7 +37,9 @@ if ($wquery->num_rows <= 0 && $wfquery->num_rows <= 0) {
 
     // Checking if Project SECURITY is enabled
     if ($settings['project_security'] == 1) {
+
         include "modules/ban-system.php";
+
         include "modules/sqli-protection.php";
         if ($searchengine_bot == 0) {
             include "modules/proxy-protection.php";
