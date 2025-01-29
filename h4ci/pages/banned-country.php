@@ -3,7 +3,7 @@ include "header.php";
 
 $query = $mysqli->query("SELECT * FROM `psec_pages-layolt` WHERE page='Banned_Country'");
 $row   = $query->fetch_assoc();
-
+if($row['id']){
 ?>
         <br />
         <div class="row d-flex justify-content-center">
@@ -20,6 +20,7 @@ echo html_entity_decode($row['text']);
   <i class="fas fa-ban fa-stack-2x text-danger"></i>
 </span></p>
 <?php
+}
 $cid = 0;
 if(isset($_GET['c_id'])) {
 	$cid = (int) $_GET['c_id'];
