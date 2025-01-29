@@ -8,7 +8,7 @@
   'mail_notifications' => 0,
   'test_integration' => 0,
   'dark_mode' => 1,
-  'countryban_blacklist' => 1,
+  'countryban_blacklist' => 0,
   'live_traffic' => 1,
   'badword_replace' => '[Censored]',
   'error_reporting' => '5',
