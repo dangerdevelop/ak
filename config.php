@@ -5,9 +5,9 @@
 	
 	
 	//Aşağıdaki kısımlar düzeltilecek
-    $username = "root"; //değiştir
-    $password = ""; //değiştir
-    $database = "adb"; //değiştir
+    $username = "ak_user"; //değiştir
+    $password = "nmpyE3msfkFjFbwB"; //değiştir
+    $database = "ak_db"; //değiştir
 
     $conn = new mysqli($host, $username, $password, $database);
     $conn->set_charset("utf8mb4");
