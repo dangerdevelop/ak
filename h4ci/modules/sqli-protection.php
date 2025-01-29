@@ -21,7 +21,7 @@ if ($settings['sqli_protection'] == 1) {
     }
     
     if ($settings['sqli_protection5'] == 1) {
-        //Force secure connection
+        //Force h4ci connection
         @header("Strict-Transport-Security: max-age=15552000; preload");
     }
     

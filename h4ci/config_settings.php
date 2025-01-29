@@ -1,8 +1,8 @@
-<?php $settings = array (
-  'site_url' => 'http://localhost',
-  'projectsecurity_path' => 'http://localhost/secure',
-  'username' => 'admin',
-  'password' => '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08',
+<?php $settings = array(
+  'site_url' => 'https://' . $_SERVER['HTTP_HOST'],
+  'projectsecurity_path' => 'https://' . $_SERVER['HTTP_HOST'] . '/h4ci',
+  'username' => 'login@h4ci',
+  'password' => 'a1b2299b8272a202c5012c24b4ea60c80d93a402d98ec765d58718c9c8d5453e', //asdHaciAk!23
   'email' => 'admin@mail.com',
   'project_security' => 1,
   'mail_notifications' => 0,
@@ -43,4 +43,4 @@
   'spam_logging' => 1,
   'spam_redirect' => 'https://www.youtube.com/watch?v=8ilDyjevQDw',
   'spam_mail' => 0,
-); ?>
+);

@@ -24,7 +24,7 @@ $error = 0;
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="dmntr">
-        <meta name="generator" content="dmntr secure" />
+        <meta name="generator" content="dmntr h4ci" />
         <meta name="robots" content="noindex, nofollow">
         <meta name="theme-color" content="#000000">
         <title>DMN&rsaquo; Panel</title>

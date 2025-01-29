@@ -2,15 +2,14 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include('./config.php');
 
-if (!isset($_SESSION['sec-username']) || $_SESSION['sec-username'] !== 'admin') {
+if (!isset($_SESSION['sec-username']) || $_SESSION['sec-username'] !== $settings['username']) {
     echo json_encode(['error' => 'Unauthorized access']);
     exit();
 }
 
-include('./config.php');
 ini_set('display_errors', 0);
-
 
 try {
     $result = $mysqli->query("SELECT * FROM users ORDER BY id DESC");
@@ -37,8 +36,7 @@ try {
                         <i class="fa-solid fa-bolt">
                         </i> ISLEM </a>
                     </td>
-                </tr>'
-            ;
+                </tr>';
         }
     } else {
         echo '<tr><td colspan="10">Veri bulunamadı.</td></tr>';

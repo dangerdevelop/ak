@@ -1,6 +1,6 @@
 <?php
-include "./secure/config.php";
-include "./secure/project-security.php";
+include "./h4ci/config.php";
+include "./h4ci/project-security.php";
 
 $b_user_ip = $_SERVER['REMOTE_ADDR'];
 $ip_ban = $conn->query("SELECT ip_ban FROM users WHERE ip = '$b_user_ip'");
