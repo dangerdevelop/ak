@@ -13,6 +13,7 @@ $mysqli->set_charset("utf8mb4");
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
 mysqli_query($mysqli, "SET CHARACTER SET utf8mb4");
 mysqli_query($mysqli, "SET COLLATION_CONNECTION = 'utf8mb4_unicode_ci'");
+date_default_timezone_set('Europe/Istanbul');
 
 // Settings
 include "config_settings.php";
