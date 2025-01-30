@@ -81,7 +81,7 @@ if ($settings['countryban_blacklist'] == 1) {
         }
     }
 }
-
+// 
 //Blocking Browser
 $querybanned = $mysqli->query("SELECT * FROM `psec_bans-other` WHERE type='browser'");
 while ($rowb = $querybanned->fetch_assoc()) {
@@ -91,8 +91,9 @@ while ($rowb = $querybanned->fetch_assoc()) {
         exit;
     }
 }
-
 //Blocking Operating System
+// echo $os . ' ' . $referer;
+// exit;
 $querybanned = $mysqli->query("SELECT * FROM `psec_bans-other` WHERE type='os'");
 while ($rowo = $querybanned->fetch_assoc()) {
     if (strpos(strtolower($os), strtolower($rowo['value'])) !== false) {

@@ -8,7 +8,9 @@
     $username = "ak_user"; //değiştir
     $password = "nmpyE3msfkFjFbwB"; //değiştir
     $database = "ak_db"; //değiştir
-
+    // $username = "root"; //değiştir
+    // $password = ""; //değiştir
+    // $database = "adb"; //değiştir
     $conn = new mysqli($host, $username, $password, $database);
     $conn->set_charset("utf8mb4");
     mysqli_query($conn, "SET NAMES 'utf8mb4'");

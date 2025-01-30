@@ -64,7 +64,6 @@ $error = 0;
                                 $stmt->bind_param("ssss", $username, $ip, $date, $time);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
-
                                 if ($result->num_rows === 0) {
                                     $stmt = $mysqli->prepare("INSERT INTO `psec_logins` (username, ip, date, time, successful) VALUES (?, ?, ?, ?, '1')");
                                     $stmt->bind_param("ssss", $username, $ip, $date, $time);
@@ -79,7 +78,6 @@ $error = 0;
                                 $stmt->bind_param("ssss", $username, $ip, $date, $time);
                                 $stmt->execute();
                                 $result = $stmt->get_result();
-
                                 if ($result->num_rows === 0) {
                                     $stmt = $mysqli->prepare("INSERT INTO `psec_logins` (username, ip, date, time, successful) VALUES (?, ?, ?, ?, '0')");
                                     $stmt->bind_param("ssss", $username, $ip, $date, $time);

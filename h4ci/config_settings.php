@@ -1,6 +1,6 @@
 <?php $settings = array(
-  'site_url' => 'https://' . $_SERVER['HTTP_HOST'].'/a',
-  'projectsecurity_path' => 'https://' . $_SERVER['HTTP_HOST'] . '/a/h4ci',
+  'site_url' => 'https://' . $_SERVER['HTTP_HOST'].'/',
+  'projectsecurity_path' => 'https://' . $_SERVER['HTTP_HOST'] . '/h4ci/',
   'username' => 'login@h4ci',
   'password' => 'a1b2299b8272a202c5012c24b4ea60c80d93a402d98ec765d58718c9c8d5453e', //asdHaciAk!23
   'email' => 'admin@mail.com',

@@ -316,7 +316,6 @@ if ($settings['live_traffic'] == 1) {
     } else {
         $device_type = 'Computer';
     }
-    
     $domain = trim($_SERVER['SERVER_NAME'], "www.");
     
     //Log Visit
