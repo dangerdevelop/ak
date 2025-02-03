@@ -1,6 +1,6 @@
 <?php
 
-include($_SERVER['DOCUMENT_ROOT'] . '/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/a/config.php');
 $mysqli = new mysqli($host, $username, $password, $database);
 
 // Checking Connection

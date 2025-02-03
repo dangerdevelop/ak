@@ -114,3 +114,24 @@ a:visited {
 	background-color: #d9534f; 
 	color: white;
 }
+
+.fade-text {
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+	background-color: #3498db; /* Arkaplan rengi */
+	padding: 3px 9px;
+	display: inline-block;
+	opacity: 0; /* Başlangıçta görünmez */
+	animation: fadeInOut 3s infinite; /* Animasyonu uygula */
+}
+
+/* Fade In ve Fade Out animasyonu */
+@keyframes fadeInOut {
+	0%, 100% {
+		opacity: 0; /* Başlangıç ve bitişte görünmez */
+	}
+	50% {
+		opacity: 1; /* Ortada tamamen görünür */
+	}
+}

